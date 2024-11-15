@@ -102,7 +102,10 @@ def load_dll(dll_path = None):
     try:
         # Windows supports all dll
         dllFile = name
-        loadedDll = ct.WinDLL(dllFile)
+        # for some reason, ct.WinDLL(dllFile) doesn't work in my PC (64bit Win10)
+        # loadedDll = ct.WinDLL(dllFile)
+        # but below works
+        loadedDll = ct.WinDLL(dll_path)
     except Exception as e:
         print(e)
         print("Could be a missing dependancy dll for '%s'." % dllFile)
